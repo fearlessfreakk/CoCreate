@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { Overlay } from "./overlay";
+
 interface BoardCardProps {
   id: string;
   title: string;
@@ -28,10 +30,11 @@ export const BoardCard = ({
     <Link href={`/board/${id}`} className="block">
       <div
         style={{ aspectRatio: "100/127" }}
-        className="group border rounded-lg flex flex-col justify-between overflow-hidden"
+        className="board-card border rounded-lg flex flex-col justify-between overflow-hidden"
       >
         <div className="relative flex-1 bg-amber-50">
           <Image src={imageUrl} alt="doodle" fill className="object-cover" />
+          <Overlay />
         </div>
       </div>
     </Link>
