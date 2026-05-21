@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@clerk/nextjs";
+import { formatDistanceToNow } from "date-fns";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { Overlay } from "./overlay";
+import { Footer } from "./footer";
 
 interface BoardCardProps {
   id: string;
@@ -26,6 +30,11 @@ export const BoardCard = ({
   orgId,
   isFavorite,
 }: BoardCardProps) => {
+  const { userId } = useAuth();
+
+  const authorLabel = userId === authorId ? "You" : authorName;
+  const createdAtLabel = formatDistanceToNow(createdAt, { addSuffix: true });
+
   return (
     <Link href={`/board/${id}`} className="block">
       <div
@@ -36,7 +45,24 @@ export const BoardCard = ({
           <Image src={imageUrl} alt="doodle" fill className="object-cover" />
           <Overlay />
         </div>
+        <Footer
+          isFavorite={isFavorite}
+          title={title}
+          authorLabel={authorLabel}
+          createdAtLabel={createdAtLabel}
+          onClick={() => {}}
+          disabled={false}
+        />
       </div>
     </Link>
+  );
+};
+
+BoardCard.Skeleton = function BoardCardSkeleton() {
+  return (
+    <div
+      style={{ aspectRatio: "100/127" }}
+      className="group border rounded-lg flex flex-col justify-between overflow-hidden"
+    ></div>
   );
 };
