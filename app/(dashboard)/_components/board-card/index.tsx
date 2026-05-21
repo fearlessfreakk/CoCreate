@@ -30,7 +30,7 @@ export const BoardCard = ({
     <Link href={`/board/${id}`} className="block">
       <div
         style={{ aspectRatio: "100/127" }}
-        className="board-card border rounded-lg flex flex-col justify-between overflow-hidden"
+        className="group border rounded-lg flex flex-col justify-between overflow-hidden"
       >
         <div className="relative flex-1 bg-amber-50">
           <Image src={imageUrl} alt="doodle" fill className="object-cover" />

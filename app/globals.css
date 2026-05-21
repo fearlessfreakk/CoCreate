@@ -132,8 +132,3 @@ html,body,:root{
     @apply font-sans;
   }
 }
-
-/* Board card dim on hover */
-.board-card:hover .board-overlay {
-  opacity: 1;
-}
