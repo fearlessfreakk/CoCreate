@@ -17,7 +17,7 @@ interface BoardListProps {
 
 export const BoardList = ({ orgId, query }: BoardListProps) => {
   const resolvedQuery = use(query) as { search?: string; favorites?: string };
-  const data = useQuery(api.boards.get, { orgId });
+  const data = useQuery(api.boards.get, { orgId, ...resolvedQuery});
 
   if (data === undefined) {
     return (
